@@ -1,0 +1,32 @@
+digraph G{
+  rankdir=HR;
+  Node_00000214c7d31750 [shape=record, style="filled", fillcolor="#F08080", label=" girl"];
+  Node_00000214c7d31880 [shape=record, style="filled", fillcolor="#F08080", label=" From Baskiriya"];
+  Node_00000214c7d319b0 [shape=record, style="filled", fillcolor="#F08080", label=" wears glasses"];
+  Node_00000214c7d31ae0 [shape=record, style="filled", fillcolor="#F08080", label=" Nuriya"];
+  Node_00000214c7d31c10 [shape=record, style="filled", fillcolor="#F08080", label=" Marina"];
+  Node_00000214c7d31d40 [shape=record, style="filled", fillcolor="#F08080", label=" Masha"];
+  Node_00000214c7d31d60 [shape=record, style="filled", fillcolor="#F08080", label=" Vseross in physics"];
+  Node_00000214c7d31d80 [shape=record, style="filled", fillcolor="#F08080", label=" blond"];
+  Node_00000214c7d31da0 [shape=record, style="filled", fillcolor="#F08080", label=" Artem"];
+  Node_00000214c7d31dc0 [shape=record, style="filled", fillcolor="#F08080", label=" Arman"];
+  Node_00000214c7d31de0 [shape=record, style="filled", fillcolor="#F08080", label=" wears glasses"];
+  Node_00000214c7d31e00 [shape=record, style="filled", fillcolor="#F08080", label=" Anton"];
+  Node_00000214c7d37a10 [shape=record, style="filled", fillcolor="#F08080", label=" lives on the 1st floor"];
+  Node_00000214c7d37c90 [shape=record, style="filled", fillcolor="#F08080", label=" Grisha"];
+  Node_00000214c7d37d90 [shape=record, style="filled", fillcolor="#F08080", label=" Unknown who"];
+Node_00000214c7d31750 -> Node_00000214c7d31880[color="red"]
+Node_00000214c7d31750 -> Node_00000214c7d31d60[color="red"]
+Node_00000214c7d31880 -> Node_00000214c7d319b0[color="red"]
+Node_00000214c7d31880 -> Node_00000214c7d31d40[color="red"]
+Node_00000214c7d319b0 -> Node_00000214c7d31ae0[color="red"]
+Node_00000214c7d319b0 -> Node_00000214c7d31c10[color="red"]
+Node_00000214c7d31d60 -> Node_00000214c7d31d80[color="red"]
+Node_00000214c7d31d60 -> Node_00000214c7d31de0[color="red"]
+Node_00000214c7d31d80 -> Node_00000214c7d31da0[color="red"]
+Node_00000214c7d31d80 -> Node_00000214c7d31dc0[color="red"]
+Node_00000214c7d31de0 -> Node_00000214c7d31e00[color="red"]
+Node_00000214c7d31de0 -> Node_00000214c7d37a10[color="red"]
+Node_00000214c7d37a10 -> Node_00000214c7d37c90[color="red"]
+Node_00000214c7d37a10 -> Node_00000214c7d37d90[color="red"]
+}
