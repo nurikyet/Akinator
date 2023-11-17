@@ -1,3 +1,6 @@
+#define TX_USE_SPEAK
+#include "TxLib.h"
+
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -77,6 +80,8 @@ int main()
     fprintf(stderr, COLOUR_CYAN("Do you want to save the DataBase\n"));
     fprintf(stderr, COLOUR_CYAN("Enter Y - if if your answer is yes, enter N - if your answer is no.\n"));
 
+    txSpeak("Хотите ли Вы сохранить базу данных?");
+
     char decision[] = "";
     scanf("%1s", decision);
     if (decision[0] == 'Y')
@@ -92,7 +97,7 @@ void GetComparison(Tree* tree)
     assert(tree);
 
     printf(COLOUR_CYAN("Enter the first object\n"));
-
+    txSpeak("Введите первый объект.");
     char* name1 = GetNameOfObject();
     struct stack stk1 = {};
     StackCtor(&stk1, MAX_STACK_LEN);
@@ -105,6 +110,7 @@ void GetComparison(Tree* tree)
     }
 
     printf(COLOUR_CYAN("Enter the name of the second object\n"));
+    txSpeak("Введите второй объект.");
 
     char* name2 = GetNameOfObject();
     struct stack stk2 = {};
@@ -132,6 +138,7 @@ void GiveDifferences(struct stack* stk1, struct stack* stk2)
     if (stk1->data[1] == stk2->data[1])
     {
         printf(COLOUR_YELLOW("These objects %s and %s are similar in that they are both: "), ((Node*)(stk1->data[stk1->size - 1]))->data, ((Node*)(stk2->data[stk2->size - 1]))->data);
+        txSpeak("Объекты %s и %s похожи тем, что: ", ((Node*)(stk1->data[stk1->size - 1]))->data, ((Node*)(stk2->data[stk2->size - 1]))->data);
     }
 
     int both_characteristic = 0;
@@ -140,38 +147,48 @@ void GiveDifferences(struct stack* stk1, struct stack* stk2)
         if (stk1->data[i]->right == stk1->data[i + 1])
         {
             printf(COLOUR_YELLOW("not "));
+            txSpeak("не ");
         }
 
         printf(COLOUR_YELLOW("%s "), stk1->data[i]->data);
+        txSpeak("%s ", stk1->data[i]->data);
         ++both_characteristic;
     }
 
     if (stk1->data[1] == stk2->data[1])
     {
         printf(COLOUR_YELLOW("But "));
+        txSpeak("но ");
     }
-    printf(COLOUR_YELLOW("%s "), ((Node *) (stk1->data[stk1->size - 1]))->data);
+    printf(COLOUR_YELLOW("%s "), ((Node*) (stk1->data[stk1->size - 1]))->data);
+    txSpeak("%s ", ((Node*) (stk1->data[stk1->size - 1]))->data);
 
     for(int i = both_characteristic; i < stk1->size - 1; ++i)
     {
         if (stk1->data[i]->right == stk1->data[i + 1])
         {
             printf(COLOUR_YELLOW("not "));
+            txSpeak("но ");
         }
 
         printf(COLOUR_YELLOW("%s"), stk1->data[i]->data);
+        txSpeak("%s ", stk1->data[i]->data);
         printf(COLOUR_YELLOW(", "));
     }
 
-    printf(COLOUR_YELLOW("and %s "), ((Node *) (stk2->data[stk2->size - 1]))->data);
+    printf(COLOUR_YELLOW("and %s "), ((Node*) (stk2->data[stk2->size - 1]))->data);
+    txSpeak("а ", ((Node *) (stk2->data[stk2->size - 1]))->data);
+
     for (int i = both_characteristic; i < stk2->size - 1; ++i)
     {
         if (stk2->data[i]->right == stk2->data[i + 1])
         {
             printf(COLOUR_YELLOW("not "));
+            txSpeak("не ");
         }
 
         printf(COLOUR_YELLOW("%s"), stk2->data[i]->data);
+        txSpeak("%s ", stk2->data[i]->data);
 
         if (i != stk2->size - 2)
         {
@@ -190,6 +207,8 @@ void GetDefinition(Tree* tree)
     }
 
     printf(COLOUR_CYAN("Enter the object whose definition you want to know\n"));
+    txSpeak("Введите название объекта, название которого хотите узнать");
+
     rewind(stdin);
     fgets(name, MAX_NAME_LEN, stdin);
     name[strlen(name) - 1] = '\0';
@@ -205,15 +224,18 @@ void GetDefinition(Tree* tree)
     }
 
     printf(COLOUR_MAGENTA("%s - "), ((Node*) (stk.data[stk.size - 1]))->data);
+    txSpeak("%s - ", ((Node*) (stk.data[stk.size - 1]))->data);
 
     for (int i = 0; i < stk.size - 1; ++i)
     {
         if (stk.data[i]->right == stk.data[i + 1])
         {
             printf(COLOUR_MAGENTA("not "));
+            txSpeak("не ");
         }
 
         printf(COLOUR_MAGENTA("%s"), stk.data[i]->data);
+        txSpeak("%s", stk.data[i]->data);
 
         if (i != stk.size - 2)
         {
@@ -288,7 +310,7 @@ int DataBaseProcess(Tree* tree)
                     if(node->right != nullptr)
                     {
                         fprintf(stderr, "Your DataBase is not suitable for reading - %d, check the correctness of the entered data\n", __LINE__);
-                        return (int)Errors::ERROR_OF_DATA_BASE;
+                        return (int)Errors::ERROR_OF_BASE;
                     }
                     node->right = NodeCtor(nullptr, nullptr);
                     node = node->right;
@@ -302,7 +324,7 @@ int DataBaseProcess(Tree* tree)
                     if (symbol - tree->DataBase.information != tree->DataBase.size - 1)
                     {
                         fprintf(stderr, "Your DataBase is not suitable for reading - %d, check the correctness of the entered data\n", __LINE__);
-                        return (int)Errors::ERROR_OF_DATA_BASE;
+                        return (int)Errors::ERROR_OF_BASE;
                     }
 
                     break;
@@ -317,13 +339,13 @@ int DataBaseProcess(Tree* tree)
                 if(words_ending == nullptr)
                 {
                     fprintf(stderr, "Your DataBase is not suitable for reading, check the correctness of the entered data\n");
-                    return (int)Errors::ERROR_OF_DATA_BASE;
+                    return (int)Errors::ERROR_OF_BASE;
                 }
 
                 if (words_ending - (symbol + 1) > MAX_NAME_LEN)
                 {
                     printf("Your question is too big\n");
-                    return (int)Errors::ERROR_OF_LEN;
+                    return (int)Errors::ERROR_LEN;
                 }
                 else
                 {
@@ -334,13 +356,13 @@ int DataBaseProcess(Tree* tree)
 
             default:
                 fprintf(stderr, "Your DataBase is not suitable for reading, check the correctness of the entered data\n");
-                return (int)Errors::ERROR_OF_DATA_BASE;
+                return (int)Errors::ERROR_OF_BASE;
         }
     }
 
     StackDtor(&stk);
 
-    return (int)Error::NO_ERROR;
+    return (int)Error::NULL_ERRORS;
 }
 
 void TreeCtor(Tree* tree)
@@ -411,7 +433,7 @@ int NodeDtor(Node* n)
 
     free(n);
 
-    return (int)Errors::NO_ERROR;
+    return (int)Errors::NULL_ERRORS;
 }
 
 int TreeDtor(Tree* tree)
@@ -423,7 +445,7 @@ int TreeDtor(Tree* tree)
     tree->root = nullptr;
     tree->size = POISON_ELEMENT;
 
-    return (int)Errors::NO_ERROR;
+    return (int)Errors::NULL_ERRORS;
 }
 
 void PrintNodePre(FILE* fp, Node* n)
@@ -547,6 +569,8 @@ char* GetNameOfObject()
     }
 
     printf(COLOUR_CYAN("What or who was it?\n"));
+    txSpeak("Кто или что это?");
+
     rewind(stdin);
     fgets(name, MAX_NAME_LEN, stdin);
     name[strlen(name) - 1] = '\0';
@@ -556,7 +580,8 @@ char* GetNameOfObject()
 
 char* GetCharacteristic(char* first, char* second)
 {
-    printf(COLOUR_CYAN("What is the difference between a %s and a %s?\n"), first, second);
+    printf(COLOUR_CYAN("What is the difference between a %s and a %s?\n"), second, first);
+    txSpeak("Чем %s отличается от %s?", second, first);
 
     char* characteristic = (char*)calloc(MAX_NAME_LEN, sizeof(char));
     if (characteristic == nullptr)
@@ -574,6 +599,8 @@ int GetMode()
 {
     int mode = 0;
     printf(COLOUR_CYAN("Select the mode of operation: 1 - DataBase drawing; 2 - game; 3 - object definition; 4 - comparison\n"));
+    //txSpeak("Введите режим в котором хотите сыграть: 1 - построение графа, 2 - игра, 3 - определение объекта, 4 - сравнение объектов");
+
     scanf("%d", &mode);
 
     return mode;
@@ -582,6 +609,8 @@ int GetMode()
 Answers GetAnswer(Node* n)
 {
     printf(COLOUR_GREEN("%s? Enter Y - if if your answer is yes, enter N - if your answer is no.\n"), n->data);
+    txSpeak("Этот объект %s?", n->data);
+
     char answer[MAX_NAME_LEN];
     scanf("%s", answer);
 
@@ -617,6 +646,7 @@ void StartPlayGame(Node* node, Tree* tree)
         if (node->left == nullptr and node->right == nullptr)
         {
             printf(COLOUR_RED("ARTIFICIAL INTELLIGENCE WON THIS WAR\n"));
+            txSpeak("ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ ПОБЕДИЛ В ЭТОЙ ВОЙНЕ, СКЛОНИТЕСЬ ЛЮДИ!!!");
             return;
         }
 
@@ -676,6 +706,7 @@ int PlayAgain()
 {
     fprintf(stderr, COLOUR_CYAN("Do you want to continue the game\n"));
     fprintf(stderr, COLOUR_CYAN("Enter Y - if if your answer is yes, enter N - if your answer is no.\n"));
+    txSpeak("Хотите ли вы продолжить игру?");
 
     char decision[MAX_NAME_LEN] = {};
     scanf("%1s", decision);
@@ -707,6 +738,8 @@ void AkinatorGame(Tree* tree)
                 if (node->left == nullptr and node->right == nullptr)
                 {
                     printf(COLOUR_RED("ARTIFICIAL INTELLIGENCE WON THIS WAR\n"));
+                    txSpeak("ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ ПОБЕДИЛ В ЭТОЙ ВОЙНЕ, СКЛОНИТЕСЬ ЛЮДИ!!!");
+
                     return;
                 }
 

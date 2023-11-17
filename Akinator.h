@@ -41,13 +41,13 @@ enum Answers
     UNKNOWN_ANSWER
 };
 
-enum class Errors
+enum Errors
 {
-    NO_ERROR             = 0,
+    NULL_ERRORS          = 0,
     ERROR_MEMORY         = 1,
     ERROR_UNKNOWN_ANSWER = 2,
-    ERROR_OF_LEN         = 3,
-    ERROR_OF_DATA_BASE   = 4,
+    ERROR_LEN            = 3,
+    ERROR_OF_BASE        = 4,
     ERROR_OBJECT         = 5
 };
 

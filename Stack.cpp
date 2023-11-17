@@ -26,7 +26,7 @@ int StackCtor(struct stack* stk, size_t cpt)
 
     stk->size = 0;
 
-    return (int)Error::NO_ERROR;
+    return (int)Error::NULL_ERRORS;
     }
 
 //-----------------------------------------------------------------------------
@@ -40,7 +40,7 @@ int StackDtor(struct stack* stk)
     stk->size     = 0;
     stk->capacity = 0;
 
-    return (int)Error::NO_ERROR;
+    return (int)Error::NULL_ERRORS;
     }
 
 //-----------------------------------------------------------------------------
@@ -59,7 +59,7 @@ int StackPush(struct stack* stk, const elem_t value)
     (stk->size)++;
 
     VERIFY(stk)
-    return (int)Error::NO_ERROR;
+    return (int)Error::NULL_ERRORS;
     }
 
 //-----------------------------------------------------------------------------
@@ -153,7 +153,7 @@ int StackRealloc(struct stack *stk, int new_capacity)
     stk->capacity = new_capacity;
 
     VERIFY(stk)
-    return (int)Error::NO_ERROR;
+    return (int)Error::NULL_ERRORS;
     }
 
 //-----------------------------------------------------------------------------

@@ -112,7 +112,7 @@ struct stack
 
 enum class Error
     {
-    NO_ERROR            = 0,
+    NULL_ERRORS         = 0,
     ERROR_SIZE          = 1 << 0,
     ERROR_CAPACITY      = 1 << 1,
     ERROR_DATA          = 1 << 2,

@@ -11,7 +11,7 @@ all: hello.exe
 hello.exe: Akinator.o logfile.o Error.o Stack.o
 	$(CC) $(CFLAGS) $^ -o $@
 
-Akinator.o: Akinator.cpp Akinator.h Types.h logfile.h
+Akinator.o: Akinator.cpp Akinator.h Types.h logfile.h FunnyColours.h
 	$(CC) $(CFLAGS) $< -c -o $@
 
 logfile.o: logfile.cpp logfile.h

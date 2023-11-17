@@ -8,7 +8,6 @@ typedef struct Node Node;
 
 typedef struct Tree Tree;
 
-
 /**
  * @brief class type for stack
  *
