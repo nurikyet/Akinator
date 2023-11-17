@@ -16,18 +16,13 @@
 
 char INITAL_ELEMENT[12]   = "Unknown who";
 
-int main()
+void AkinatorInteractive(FILE* DataBase, Tree* tree)
 {
-    Tree tree = {};
-    TreeCtor(&tree);
-
-    FILE* DataBase = fopen(DATA_BASE, "r+");
-
     if (DataBase != nullptr)
     {
-        BaseCtor(&tree, DataBase);
+        BaseCtor(tree, DataBase);
 
-        DataBaseProcess(&tree);
+        DataBaseProcess(tree);
         assert(DataBase != nullptr);
     }
 
@@ -36,7 +31,7 @@ int main()
         fclose(DataBase);
         DataBase = fopen(DATA_BASE, "w+t");
 
-        TreeCtor(&tree);
+        TreeCtor(tree);
         assert(DataBase != nullptr);
     }
 
@@ -47,22 +42,22 @@ int main()
         {
             case (Mode::DATABASE_DRAWING):
             {
-                GraphicDump(&tree);
+                GraphicDump(tree);
                 break;
             }
             case (Mode::GAME):
             {
-                AkinatorGame(&tree);
+                AkinatorGame(tree);
                 break;
             }
             case (Mode::OBJECT_DEFINITION):
             {
-                GetDefinition(&tree);
+                GetDefinition(tree);
                 break;
             }
             case (Mode::COMPARISON):
             {
-                GetComparison(&tree);
+                GetComparison(tree);
                 break;
             }
             default:
@@ -86,10 +81,8 @@ int main()
     scanf("%1s", decision);
     if (decision[0] == 'Y')
     {
-        AddDataBase(DataBase, &tree);
+        AddDataBase(DataBase, tree);
     }
-    TreeDtor(&tree);
-    return 0;
 }
 
 void GetComparison(Tree* tree)
@@ -524,8 +517,7 @@ void GraphicDump(Tree* tree)
     char graph[MAX_NAME_LEN] = {};
     sprintf(graph, "dot -Tpng list.dot -o list.png");
     system(graph);
-    system("start");
-
+    system("start list.png");
 }
 
 void PrintElement(FILE* fp, Node* n)
@@ -661,7 +653,7 @@ void StartPlayGame(Node* node, Tree* tree)
     {
         if (node->right == nullptr and node->left == nullptr)
         {
-            NewElement(node);
+            AddNewObject(node);
         }
         else
         {
@@ -672,7 +664,7 @@ void StartPlayGame(Node* node, Tree* tree)
 
 }
 
-void NewElement(Node* node)
+void AddNewObject(Node* node)
 {
     char *new_object = GetNameOfObject();
     char *difference = GetCharacteristic(node->data, new_object);
@@ -752,7 +744,7 @@ void AkinatorGame(Tree* tree)
             {
                 if (node->left == nullptr and node->right == nullptr)
                 {
-                    NewElement(node);
+                    AddNewObject(node);
                     return;
                 }
                 else

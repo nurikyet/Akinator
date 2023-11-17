@@ -51,10 +51,11 @@ enum Errors
     ERROR_OBJECT         = 5
 };
 
-const char* DATA_BASE           = "DataBase.txt";
+static const char* DATA_BASE           = "DataBase.txt";
 static const int POISON_ELEMENT = -777;
 static const int MAX_STACK_LEN  = 30;
 
+void AkinatorInteractive(FILE* DataBase, Tree* tree);
 void PrintNodePre(FILE* fp, Node* n);
 void PrintNodeIn(Node* n);
 void PrintNodePost(Node* n);
@@ -70,7 +71,7 @@ void GetDefinition(Tree* tree);
 void AkinatorStatement(Node* main_element, Node* element);
 void GetComparison(Tree* tree);
 void AkinatorGame(Tree* tree);
-void NewElement(Node* node);
+void AddNewObject(Node* node);
 void GiveDifferences(struct stack* stk1, struct stack* stk2);
 
 int NodeDtor(Node* n);

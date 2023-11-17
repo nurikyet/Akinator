@@ -8,8 +8,10 @@ CFLAGS = -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equ
 
 all: hello.exe
 
-hello.exe: Akinator.o logfile.o Error.o Stack.o
+hello.exe: Main.o Akinator.o logfile.o Error.o Stack.o
 	$(CC) $(CFLAGS) $^ -o $@
+
+Main.o: Main.cpp Akinator.h Types.h
 
 Akinator.o: Akinator.cpp Akinator.h Types.h logfile.h FunnyColours.h
 	$(CC) $(CFLAGS) $< -c -o $@

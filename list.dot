@@ -1,36 +1,36 @@
 digraph G{
   rankdir=HR;
-  Node_000001fc6ca96740 [shape=record, style="filled", fillcolor="#F08080", label=" girl"];
-  Node_000001fc6ca96160 [shape=record, style="filled", fillcolor="#F08080", label=" From Baskiriya"];
-  Node_000001fc6ca961e0 [shape=record, style="filled", fillcolor="#F08080", label=" wears glasses"];
-  Node_000001fc6ca96200 [shape=record, style="filled", fillcolor="#F08080", label=" Nuriya"];
-  Node_000001fc6ca96800 [shape=record, style="filled", fillcolor="#F08080", label=" Marina"];
-  Node_000001fc6ca96220 [shape=record, style="filled", fillcolor="#F08080", label=" Masha"];
-  Node_000001fc6ca96380 [shape=record, style="filled", fillcolor="#F08080", label=" Vseross in physics"];
-  Node_000001fc6ca96580 [shape=record, style="filled", fillcolor="#F08080", label=" blond"];
-  Node_000001fc6ca963a0 [shape=record, style="filled", fillcolor="#F08080", label=" Artem"];
-  Node_000001fc6ca96540 [shape=record, style="filled", fillcolor="#F08080", label=" Arman"];
-  Node_000001fc6ca965a0 [shape=record, style="filled", fillcolor="#F08080", label=" wears glasses"];
-  Node_000001fc6ca96320 [shape=record, style="filled", fillcolor="#F08080", label=" Anton"];
-  Node_000001fc6ca96820 [shape=record, style="filled", fillcolor="#F08080", label=" lives on the 1st floor"];
-  Node_000001fc6ca965c0 [shape=record, style="filled", fillcolor="#F08080", label=" Grisha"];
-  Node_000001fc6ca965e0 [shape=record, style="filled", fillcolor="#F08080", label=" IS SINGER"];
-  Node_000001fc6e17dd70 [shape=record, style="filled", fillcolor="#F08080", label=" MORGENSHTERN"];
-  Node_000001fc6e17dcb0 [shape=record, style="filled", fillcolor="#F08080", label=" Unknown who"];
-Node_000001fc6ca96740 -> Node_000001fc6ca96160[color="red"]
-Node_000001fc6ca96740 -> Node_000001fc6ca96380[color="red"]
-Node_000001fc6ca96160 -> Node_000001fc6ca961e0[color="red"]
-Node_000001fc6ca96160 -> Node_000001fc6ca96220[color="red"]
-Node_000001fc6ca961e0 -> Node_000001fc6ca96200[color="red"]
-Node_000001fc6ca961e0 -> Node_000001fc6ca96800[color="red"]
-Node_000001fc6ca96380 -> Node_000001fc6ca96580[color="red"]
-Node_000001fc6ca96380 -> Node_000001fc6ca965a0[color="red"]
-Node_000001fc6ca96580 -> Node_000001fc6ca963a0[color="red"]
-Node_000001fc6ca96580 -> Node_000001fc6ca96540[color="red"]
-Node_000001fc6ca965a0 -> Node_000001fc6ca96320[color="red"]
-Node_000001fc6ca965a0 -> Node_000001fc6ca96820[color="red"]
-Node_000001fc6ca96820 -> Node_000001fc6ca965c0[color="red"]
-Node_000001fc6ca96820 -> Node_000001fc6ca965e0[color="red"]
-Node_000001fc6ca965e0 -> Node_000001fc6e17dd70[color="red"]
-Node_000001fc6ca965e0 -> Node_000001fc6e17dcb0[color="red"]
+  Node_0000025359dd65c0 [shape=record, style="filled", fillcolor="#F08080", label=" girl"];
+  Node_0000025359dd64c0 [shape=record, style="filled", fillcolor="#F08080", label=" From Baskiriya"];
+  Node_0000025359dd6120 [shape=record, style="filled", fillcolor="#F08080", label=" wears glasses"];
+  Node_0000025359dd6460 [shape=record, style="filled", fillcolor="#F08080", label=" Nuriya"];
+  Node_0000025359dd6180 [shape=record, style="filled", fillcolor="#F08080", label=" Marina"];
+  Node_0000025359dd6140 [shape=record, style="filled", fillcolor="#F08080", label=" Masha"];
+  Node_0000025359dd6280 [shape=record, style="filled", fillcolor="#F08080", label=" Vseross in physics"];
+  Node_0000025359dd64e0 [shape=record, style="filled", fillcolor="#F08080", label=" blond"];
+  Node_0000025359dd61a0 [shape=record, style="filled", fillcolor="#F08080", label=" Artem"];
+  Node_0000025359dd61e0 [shape=record, style="filled", fillcolor="#F08080", label=" Arman"];
+  Node_0000025359dd6300 [shape=record, style="filled", fillcolor="#F08080", label=" wears glasses"];
+  Node_0000025359dd62a0 [shape=record, style="filled", fillcolor="#F08080", label=" Anton"];
+  Node_0000025359dd63a0 [shape=record, style="filled", fillcolor="#F08080", label=" lives on the 1st floor"];
+  Node_0000025359dd61c0 [shape=record, style="filled", fillcolor="#F08080", label=" Grisha"];
+  Node_0000025359dd63c0 [shape=record, style="filled", fillcolor="#F08080", label=" IS SINGER"];
+  Node_0000025359dd66a0 [shape=record, style="filled", fillcolor="#F08080", label=" MORGENSHTERN"];
+  Node_0000025359dd63e0 [shape=record, style="filled", fillcolor="#F08080", label=" Unknown who"];
+Node_0000025359dd65c0 -> Node_0000025359dd64c0[color="red"]
+Node_0000025359dd65c0 -> Node_0000025359dd6280[color="red"]
+Node_0000025359dd64c0 -> Node_0000025359dd6120[color="red"]
+Node_0000025359dd64c0 -> Node_0000025359dd6140[color="red"]
+Node_0000025359dd6120 -> Node_0000025359dd6460[color="red"]
+Node_0000025359dd6120 -> Node_0000025359dd6180[color="red"]
+Node_0000025359dd6280 -> Node_0000025359dd64e0[color="red"]
+Node_0000025359dd6280 -> Node_0000025359dd6300[color="red"]
+Node_0000025359dd64e0 -> Node_0000025359dd61a0[color="red"]
+Node_0000025359dd64e0 -> Node_0000025359dd61e0[color="red"]
+Node_0000025359dd6300 -> Node_0000025359dd62a0[color="red"]
+Node_0000025359dd6300 -> Node_0000025359dd63a0[color="red"]
+Node_0000025359dd63a0 -> Node_0000025359dd61c0[color="red"]
+Node_0000025359dd63a0 -> Node_0000025359dd63c0[color="red"]
+Node_0000025359dd63c0 -> Node_0000025359dd66a0[color="red"]
+Node_0000025359dd63c0 -> Node_0000025359dd63e0[color="red"]
 }
