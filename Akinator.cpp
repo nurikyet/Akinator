@@ -739,10 +739,8 @@ void AkinatorGame(Tree* tree)
                 {
                     printf(COLOUR_RED("ARTIFICIAL INTELLIGENCE WON THIS WAR\n"));
                     txSpeak("ÈÑÊÓÑÑÒÂÅÍÍÛÉ ÈÍÒÅËËÅÊÒ ÏÎÁÅÄÈË Â ÝÒÎÉ ÂÎÉÍÅ, ÑÊËÎÍÈÒÅÑÜ ËÞÄÈ!!!");
-
                     return;
                 }
-
                 else
                 {
                     node = node->left;
@@ -761,7 +759,6 @@ void AkinatorGame(Tree* tree)
                 {
                     node = node->right;
                 }
-
             }
             break;
 
