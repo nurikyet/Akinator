@@ -9,7 +9,7 @@
 
 static elem_t POISON = (Node*) 0xDEADBEEF;
 
-int StackCtor(struct stack* stk, size_t cpt)
+int StackCtor(stack* stk, size_t cpt)
     {
     assert(cpt);
     stk->capacity = (int)cpt;
@@ -31,7 +31,7 @@ int StackCtor(struct stack* stk, size_t cpt)
 
 //-----------------------------------------------------------------------------
 
-int StackDtor(struct stack* stk)
+int StackDtor(stack* stk)
     {
     VERIFY(stk)
 
@@ -45,7 +45,7 @@ int StackDtor(struct stack* stk)
 
 //-----------------------------------------------------------------------------
 
-int StackPush(struct stack* stk, const elem_t value)
+int StackPush(stack* stk, const elem_t value)
     {
     VERIFY(stk)
 
@@ -64,7 +64,7 @@ int StackPush(struct stack* stk, const elem_t value)
 
 //-----------------------------------------------------------------------------
 
-elem_t StackPop(struct stack* stk)
+elem_t StackPop(stack* stk)
     {
     (stk->size)--;
     elem_t retvalue = (stk->data)[(stk->size)];
@@ -84,7 +84,7 @@ elem_t StackPop(struct stack* stk)
 
 //-----------------------------------------------------------------------------
 
-void StackDump(FILE* fp, struct stack* stk, const char* func, const char* file, const int line)
+void StackDump(FILE* fp, stack* stk, const char* func, const char* file, const int line)
     {
     assert(stk);
     assert(func);
@@ -105,7 +105,7 @@ void StackDump(FILE* fp, struct stack* stk, const char* func, const char* file, 
 
 //-----------------------------------------------------------------------------
 
-void PrintStack(FILE* fp, const struct stack *stk)
+void PrintStack(FILE* fp, const stack *stk)
     {
     fprintf(fp, "stack %d > \n", stk->size);
     for (int i = 0; i < (stk->size); i++)
@@ -127,7 +127,7 @@ void PrintStack(FILE* fp, const struct stack *stk)
 
 //-----------------------------------------------------------------------------
 
-int StackRealloc(struct stack *stk, int new_capacity)
+int StackRealloc(stack *stk, int new_capacity)
     {
     printf("start realloc\n");
     assert(stk);
@@ -158,7 +158,7 @@ int StackRealloc(struct stack *stk, int new_capacity)
 
 //-----------------------------------------------------------------------------
 
-void PrintInConsole(const struct stack *stk)
+void PrintInConsole(const stack *stk)
     {
     printf("stack %d > \n", stk->size);
     for (int i = 0; i < (stk->size); i++)

@@ -92,7 +92,7 @@ void GetComparison(Tree* tree)
     printf(COLOUR_CYAN("Enter the first object\n"));
     txSpeak("Введите первый объект.");
     char* name1 = GetNameOfObject();
-    struct stack stk1 = {};
+    stack stk1 = {};
     StackCtor(&stk1, MAX_STACK_LEN);
 
     Node* node1 = StackDefenition(name1, &stk1, tree->root);
@@ -106,7 +106,7 @@ void GetComparison(Tree* tree)
     txSpeak("Введите второй объект.");
 
     char* name2 = GetNameOfObject();
-    struct stack stk2 = {};
+    stack stk2 = {};
     StackCtor(&stk2, MAX_STACK_LEN);
 
     Node* node2 = StackDefenition(name2, &stk2, tree->root);
@@ -123,15 +123,20 @@ void GetComparison(Tree* tree)
 
 }
 
-void GiveDifferences(struct stack* stk1, struct stack* stk2)
+void GiveDifferences(stack* stk1, stack* stk2)
 {
     assert(stk1);
     assert(stk2);
 
     if (stk1->data[1] == stk2->data[1])
     {
-        printf(COLOUR_YELLOW("These objects %s and %s are similar in that they are both: "), ((Node*)(stk1->data[stk1->size - 1]))->data, ((Node*)(stk2->data[stk2->size - 1]))->data);
-        txSpeak("Объекты %s и %s похожи тем, что: ", ((Node*)(stk1->data[stk1->size - 1]))->data, ((Node*)(stk2->data[stk2->size - 1]))->data);
+        printf(COLOUR_YELLOW("These objects %s and %s are similar in that they are both: "),
+                stk1->data[stk1->size - 1]->data,
+                stk2->data[stk2->size - 1]->data);
+
+        txSpeak("Объекты %s и %s похожи тем, что: ",
+                stk1->data[stk1->size - 1]->data,
+                stk2->data[stk2->size - 1]->data);
     }
 
     int both_characteristic = 0;
@@ -153,8 +158,8 @@ void GiveDifferences(struct stack* stk1, struct stack* stk2)
         printf(COLOUR_YELLOW("But "));
         txSpeak("но ");
     }
-    printf(COLOUR_YELLOW("%s "), ((Node*) (stk1->data[stk1->size - 1]))->data);
-    txSpeak("%s ", ((Node*) (stk1->data[stk1->size - 1]))->data);
+    printf(COLOUR_YELLOW("%s "), stk1->data[stk1->size - 1]->data);
+    txSpeak("%s ", stk1->data[stk1->size - 1]->data);
 
     for(int i = both_characteristic; i < stk1->size - 1; ++i)
     {
@@ -169,8 +174,8 @@ void GiveDifferences(struct stack* stk1, struct stack* stk2)
         printf(COLOUR_YELLOW(", "));
     }
 
-    printf(COLOUR_YELLOW("and %s "), ((Node*) (stk2->data[stk2->size - 1]))->data);
-    txSpeak("а ", ((Node *) (stk2->data[stk2->size - 1]))->data);
+    printf(COLOUR_YELLOW("and %s "), stk2->data[stk2->size - 1]->data);
+    txSpeak("а %s", stk2->data[stk2->size - 1]->data);
 
     for (int i = both_characteristic; i < stk2->size - 1; ++i)
     {
@@ -206,7 +211,7 @@ void GetDefinition(Tree* tree)
     fgets(name, MAX_NAME_LEN, stdin);
     name[strlen(name) - 1] = '\0';
 
-    struct stack stk = {};
+    stack stk = {};
     StackCtor(&stk, MAX_STACK_LEN);
 
     Node* node  = StackDefenition(name, &stk, tree->root);
@@ -216,8 +221,8 @@ void GetDefinition(Tree* tree)
         return;
     }
 
-    printf(COLOUR_MAGENTA("%s - "), ((Node*) (stk.data[stk.size - 1]))->data);
-    txSpeak("%s - ", ((Node*) (stk.data[stk.size - 1]))->data);
+    printf(COLOUR_MAGENTA("%s - "),  stk.data[stk.size - 1]->data);
+    txSpeak("%s - ",                 stk.data[stk.size - 1]->data);
 
     for (int i = 0; i < stk.size - 1; ++i)
     {
@@ -241,7 +246,7 @@ void GetDefinition(Tree* tree)
 
 }
 
-Node* StackDefenition(char* object, struct stack* stk, Node* node)
+Node* StackDefenition(const char* object, stack* stk, Node* node)
 {
     assert(node);
 
@@ -253,12 +258,12 @@ Node* StackDefenition(char* object, struct stack* stk, Node* node)
 
     if ((node->left  != nullptr) and (StackDefenition(object, stk, node->left) != nullptr))
     {
-        return (Node*)(stk->data[stk->size - 1]);
+        return stk->data[stk->size - 1];
     }
 
     if ((node->right != nullptr) and (StackDefenition(object, stk, node->right) != nullptr))
     {
-        return (Node*)(stk->data[stk->size - 1]);
+        return stk->data[stk->size - 1];
     }
 
     StackPop(stk);
@@ -270,7 +275,7 @@ int DataBaseProcess(Tree* tree)
 {
     assert(tree != nullptr);
 
-    struct stack stk = {};
+    stack stk = {};
     StackCtor(&stk, MAX_STACK_LEN);
 
     Node* node = NodeCtor(nullptr, nullptr);
@@ -279,7 +284,8 @@ int DataBaseProcess(Tree* tree)
     char* symbol = tree->DataBase.information;
     if (*symbol != '(')
     {
-        fprintf(stderr, "Your DataBase is not suitable for reading - %d, check the correctness of the entered data\n", __LINE__);
+        fprintf(stderr, "Your DataBase is not suitable for reading - %d, check the correctness of the entered data\n",
+                __LINE__);
     }
     StackPush(&stk, nullptr);
     ++symbol;
@@ -302,7 +308,9 @@ int DataBaseProcess(Tree* tree)
                 {
                     if(node->right != nullptr)
                     {
-                        fprintf(stderr, "Your DataBase is not suitable for reading - %d, check the correctness of the entered data\n", __LINE__);
+                        fprintf(stderr,
+                            "Your DataBase is not suitable for reading - %d, check the correctness of the entered data\n",
+                            __LINE__);
                         return (int)Errors::ERROR_OF_BASE;
                     }
                     node->right = NodeCtor(nullptr, nullptr);
@@ -316,7 +324,9 @@ int DataBaseProcess(Tree* tree)
                 {
                     if (symbol - tree->DataBase.information != tree->DataBase.size - 1)
                     {
-                        fprintf(stderr, "Your DataBase is not suitable for reading - %d, check the correctness of the entered data\n", __LINE__);
+                        fprintf(stderr,
+                            "Your DataBase is not suitable for reading - %d, check the correctness of the entered data\n",
+                            __LINE__);
                         return (int)Errors::ERROR_OF_BASE;
                     }
 
@@ -331,7 +341,8 @@ int DataBaseProcess(Tree* tree)
                 words_ending = strchr(symbol + 1, '*');
                 if(words_ending == nullptr)
                 {
-                    fprintf(stderr, "Your DataBase is not suitable for reading, check the correctness of the entered data\n");
+                    fprintf(stderr,
+                        "Your DataBase is not suitable for reading, check the correctness of the entered data\n");
                     return (int)Errors::ERROR_OF_BASE;
                 }
 
@@ -372,10 +383,7 @@ void BaseCtor(Tree* tree, FILE* fp)
 
     int file_size = GetSizeOfFile(fp);
     tree->DataBase.information = (char*)calloc(file_size, sizeof(char));
-    if (tree->DataBase.information == nullptr)
-    {
-        printf("Error of memory: tree->DataBase.information = nullptr");
-    }
+    assert(tree->DataBase.information and "Error: Out of memory: tree->DataBase.information = nullptr");
 
     tree->DataBase.size = (int)fread(tree->DataBase.information, sizeof(char), file_size, fp);
 }
@@ -387,7 +395,6 @@ void AddDataBase(FILE* fp, Tree* tree)
 
     fseek (fp, 0, SEEK_SET);
     PrintNodePre(fp, tree->root);
-    //PrintNodeIn(tree->root);
     fclose(fp);
 }
 
@@ -395,6 +402,10 @@ Node* NodeCtor(Node* left, Node* right)
 {
 
     Node* n = (Node*)calloc(1, sizeof(Node));
+    if (n == nullptr)
+    {
+        fprintf(stderr, "Error of memory data of node is nullptr\n");
+    }
 
     n->data  = (char*) calloc(MAX_NAME_LEN, sizeof(char));
     if (n->data == nullptr)
@@ -447,9 +458,9 @@ void PrintNodePre(FILE* fp, Node* n)
     assert(fp != nullptr);
 
     fprintf(fp, "(");
-    fprintf(fp, "^");
+    fprintf(fp, "*");
     fprintf(fp, "%s", n->data);
-    fprintf(fp, "^");
+    fprintf(fp, "*");
 
     if (n->left != nullptr)
     {
@@ -469,14 +480,15 @@ void PrintNodeIn(Node* n)
     assert(n);
 
     fprintf(stderr, "(");
-    fprintf(stderr, "^");
-    fprintf(stderr, "%s", n->data);
-    fprintf(stderr, "^");
 
     if (n->left != nullptr)
     {
         PrintNodeIn(n->left);
     }
+
+    fprintf(stderr, "*");
+    fprintf(stderr, "%s", n->data);
+    fprintf(stderr, "*");
 
     if (n->right != nullptr)
     {
@@ -488,17 +500,25 @@ void PrintNodeIn(Node* n)
 
 void PrintNodePost(Node* n)
 {
-    if (n == NULL)
+    assert(n);
+
+    fprintf(stderr, "(");
+
+    if (n->left != nullptr)
     {
-        printf("nil\n");
-        return;
+        PrintNodeIn(n->left);
     }
 
-    printf("(\n");
-    PrintNodePost(n->left);
-    PrintNodePost(n->right);
-    printf("%s\n", n->data);
-    printf(")\n");
+    if (n->right != nullptr)
+    {
+        PrintNodeIn(n->right);
+    }
+
+    fprintf(stderr, "*");
+    fprintf(stderr, "%s", n->data);
+    fprintf(stderr, "*");
+
+    fprintf(stderr, ")");
 }
 
 void GraphicDump(Tree* tree)
@@ -514,9 +534,7 @@ void GraphicDump(Tree* tree)
 
     fclose(fp);
 
-    char graph[MAX_NAME_LEN] = {};
-    sprintf(graph, "dot -Tpng list.dot -o list.png");
-    system(graph);
+    system("dot -Tpng list.dot -o list.png");
     system("start list.png");
 }
 
@@ -573,7 +591,7 @@ char* GetNameOfObject()
 char* GetCharacteristic(char* first, char* second)
 {
     printf(COLOUR_CYAN("What is the difference between a %s and a %s?\n"), second, first);
-    txSpeak("Чем %s отличается от %s?", second, first);
+    txSpeak("Чем же %s отличается от %s?", second, first);
 
     char* characteristic = (char*)calloc(MAX_NAME_LEN, sizeof(char));
     if (characteristic == nullptr)
@@ -591,7 +609,7 @@ int GetMode()
 {
     int mode = 0;
     printf(COLOUR_CYAN("Select the mode of operation: 1 - DataBase drawing; 2 - game; 3 - object definition; 4 - comparison\n"));
-    txSpeak("Спасибо, что призвали чудесного джина - Акинатора!");
+    txSpeak("Акинатор покоряет мир!");
 
     scanf("%d", &mode);
 
@@ -615,13 +633,11 @@ Answers GetAnswer(Node* n)
     {
         return Answers::NO;
     }
-    else
-    {
-        return Answers::UNKNOWN_ANSWER;
-    }
+
+    return Answers::UNKNOWN_ANSWER;
 }
 
-void StartPlayGame(Node* node, Tree* tree)
+/*[[deprecated]]*/ void StartPlayGame(Node* node, Tree* tree)
 {
     assert(tree);
 
@@ -677,7 +693,7 @@ void AddNewObject(Node* node)
     node->data = difference;
 }
 
-void PlayGame(Tree* tree)
+[[deprecated("Use AkinatorGame")]] void PlayGame(Tree* tree)
 {
     assert(tree);
     Node* node = tree->root;
@@ -712,8 +728,7 @@ void AkinatorGame(Tree* tree)
 
     Node* node = tree->root;
 
-    int check = 0;
-    while(check == 0)
+    while(true)
     {
         Answers answer = GetAnswer(node);
 

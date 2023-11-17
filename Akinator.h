@@ -1,6 +1,7 @@
 #ifndef AKINATOR_H_INCLUDED
 #define AKINATOR_H_INCLUDED
 #include "Types.h"
+#include "Stack.h"
 
 static const int MAX_NAME_LEN   = 255;
 
@@ -62,17 +63,17 @@ void PrintNodePost(Node* n);
 void GraphicDump(Tree* tree);
 void PrintElement(FILE* fp, Node* n);
 void PrintAdress(FILE* fp, Node* n);
-void PlayGame(Tree* tree);
+[[deprecated]] void PlayGame(Tree* tree);
 void BaseCtor(Tree* tree, FILE* fp);
 void TreeCtor(Tree* tree);
 void AddDataBase(FILE* fp, Tree* tree);
-void StartPlayGame(Node* node, Tree* tree);
+/*[[deprecated]]*/ void StartPlayGame(Node* node, Tree* tree);
 void GetDefinition(Tree* tree);
 void AkinatorStatement(Node* main_element, Node* element);
 void GetComparison(Tree* tree);
 void AkinatorGame(Tree* tree);
 void AddNewObject(Node* node);
-void GiveDifferences(struct stack* stk1, struct stack* stk2);
+void GiveDifferences(stack* stk1, stack* stk2);
 
 int NodeDtor(Node* n);
 int TreeDtor(Tree* tree);
@@ -82,7 +83,7 @@ int GetSizeOfFile(FILE* fp);
 int PlayAgain();
 
 Node* NodeCtor(Node* left, Node* right);
-Node* StackDefenition(char* object, struct stack* stk, Node* node);
+Node* StackDefenition(const char* object, stack* stk, Node* node);
 
 char* GetNameOfObject();
 char* GetCharacteristic(char* first, char* second);

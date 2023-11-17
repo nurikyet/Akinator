@@ -1,10 +1,10 @@
-#ifndef KEY_H_INCLUDED
-#define KEY_H_INCLUDED
+#ifndef STACK_H_INCLUDED
+#define STACK_H_INCLUDED
 
 #include "Types.h"
 #include "Error.h"
 
-#define STACK_CONSTRUCT(nick, quantity) struct stack nick = {};          \
+#define STACK_CONSTRUCT(nick, quantity) stack nick = {};          \
                                         StackCtor(&nick, quantity);      \
                                         nick.name = #nick;
 
@@ -28,7 +28,7 @@
 //! @param [in] function the function from which it was called
 //!
 //! makes a complete printout of the stack and its data
-void StackDump(FILE* fp, struct stack* stk, const char* func, const char* file, const int line);
+void StackDump(FILE* fp, stack* stk, const char* func, const char* file, const int line);
 
 //! @brief prints all stack data
 //! @param [in] stk all structure data
@@ -41,20 +41,20 @@ void PrintStack(FILE* fp, const stack *stk);
 //! @param [in] stk all structure data
 //!
 //! makes a complete printout of the stack and its data
-void PrintInConsole(const struct stack *stk);
+void PrintInConsole(const stack *stk);
 
 //! @brief deletes elements to the stack
 //! @param [in]  stk all structure data
 //! @param [out] ans stack element that is removed and returned
 //!
 //! returns and removes elements from the stack
-elem_t StackPop(struct stack* stk);
+elem_t StackPop(stack* stk);
 
 //! @brief destroys all stack data
 //! @param [in] stk all structure data
 //!
 //! resets all data and stack pointers
-int StackDtor(struct stack* stk);
+int StackDtor(stack* stk);
 
 int StackRealloc(stack *stk, int newcapacity);
 
@@ -62,14 +62,14 @@ int StackRealloc(stack *stk, int newcapacity);
 //! @param [in] stk all structure data
 //!
 //! sets initial parameters for the structure and allocates memory for the initial stack size
-int StackCtor(struct stack* stk, size_t cpt);
+int StackCtor(stack* stk, size_t cpt);
 
 //
 //! @brief adding elements to the stack
 //! @param [in] stk all structure data
 //!
 //! adds elements to the stack and increases the stack size
-int StackPush(struct stack* stk, const elem_t value);
+int StackPush(stack* stk, const elem_t value);
 
 /**
  * @brief unused elements constant
@@ -123,4 +123,4 @@ enum class Error
     ERROR_FILE          = 1 << 7
     };
 
-#endif // KEY_H_INCLUDED
+#endif // STACK_H_INCLUDED

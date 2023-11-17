@@ -8,7 +8,7 @@ int main()
     Tree tree = {};
     TreeCtor(&tree);
 
-    FILE* DataBase = fopen(DATA_BASE, "r+");
+    FILE* DataBase = fopen(DATA_BASE, "r+");   // this is krivo!!!
 
     AkinatorInteractive(DataBase, &tree);
 
