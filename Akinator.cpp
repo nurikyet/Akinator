@@ -599,7 +599,7 @@ int GetMode()
 {
     int mode = 0;
     printf(COLOUR_CYAN("Select the mode of operation: 1 - DataBase drawing; 2 - game; 3 - object definition; 4 - comparison\n"));
-    //txSpeak("Введите режим в котором хотите сыграть: 1 - построение графа, 2 - игра, 3 - определение объекта, 4 - сравнение объектов");
+    txSpeak("Спасибо, что призвали чудесного джина - Акинатора!");
 
     scanf("%d", &mode);
 
