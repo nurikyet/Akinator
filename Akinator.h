@@ -3,7 +3,7 @@
 #include "Types.h"
 #include "Stack.h"
 
-static const int MAX_NAME_LEN   = 255;
+static const int MAX_NAME_LEN  = 255;
 
 struct Node
 {
